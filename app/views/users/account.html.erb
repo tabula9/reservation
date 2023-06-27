@@ -1,0 +1,23 @@
+<h2>設定</h2>
+
+<div class="between container">
+    <%= render "shared/partial" %>
+
+    <div class="wid">
+        <div class="between">
+            <h3>アカウント</h3>
+            <%= link_to "編集", edit_user_registration_path %>
+        </div>
+
+        <table>
+            <tr>
+                <th>メールアドレス</th>
+                <td><%= @user.email %></td>
+            </tr>
+            <tr>
+                <th>パスワード</th>
+                <td>*********</td>
+            </tr>
+        </table>
+    </div>
+</div>

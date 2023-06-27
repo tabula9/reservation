@@ -1,0 +1,23 @@
+<h2>設定</h2>
+
+<div class="between">
+    <%= render "shared/partial" %>
+
+    <div class="wid">
+        <div class="between">
+            <h3>プロフィール</h3>
+            <%= link_to "編集", edit_user_registration_path %>
+        </div>
+
+        <table>
+            <tr>
+                <th>名前</th>
+                <td><%= @user.name %></td>
+            </tr>
+            <tr>
+                <th>自己紹介</th>
+                <td><%= @user.profile %></td>
+            </tr>
+        </table>
+    </div>
+</div>
