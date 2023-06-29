@@ -12,9 +12,7 @@
 
   <body>
     <header>
-      <%= link_to "PotepanShare", top_search_path,class: "white" %>
-      <%= link_to "アカウント設定", users_account_path,class: "white" %>
-      <%= link_to "新規登録", new_user_session_path,class: "white" %>
+      <%= render "shared/header" %>
     </header>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
