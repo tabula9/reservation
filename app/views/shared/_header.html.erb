@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
-<div class="between">
+<div class="between rela">
     <%= link_to "PotepanShare", top_search_path,class: "white" %>
-    <div class="gnavi__list white", onclick=dropdown();>
-        <%= current_user.name %>
-        <ul class="dropdown__lists">
-            <li class="dropdown__list"><%= link_to "アカウント設定", users_account_path,class: "white" %></li>
-            <li class="dropdown__list"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "white" %></li>
+    <div id="btn", class="gnavi__list white">
+        <span><%= current_user.name %></span>
+        <ul id="test", class="dropdown__lists">
+            <li id="test", class="dropdown__list"><%= link_to "アカウント設定", users_account_path,class: "white" %></li>
+            <li id="test", class="dropdown__list"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "white" %></li>
         </ul>  
     </div>
 </div>
@@ -14,6 +14,3 @@
     <%= link_to "ログイン", new_user_session_path,class: "white" %>
     <%= link_to "新規登録", new_user_registration_path,class: "white" %>
 <% end %>
-
-<%= javascript_pack_tag 'test' %>
-
