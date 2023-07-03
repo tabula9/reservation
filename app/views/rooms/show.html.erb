@@ -1,0 +1,22 @@
+<div class="between">
+ <%= link_to "← 戻る", :back %>
+ <%= link_to "編集", edit_room_path %>
+</div>
+
+<div class="between">
+    <% if @room.image? %>
+        <img src=<%= @room.image %>>
+    <% else %>
+        <img src="/assets/room.png" width="520" height="336" >
+    <% end %>
+
+    <div class="room_container">
+        <div class="between">
+            <h3><%= @room.name %></h3>
+            <h3><%= @room.price %></h3>
+        </div>
+        <p><%= @room.address %></p>
+        <p>★★★★★</p>
+        <p><%= @room.introduction %></p>
+    </div>
+</div>
