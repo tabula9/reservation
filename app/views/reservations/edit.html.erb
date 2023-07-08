@@ -1,0 +1,25 @@
+<h2>再予約する</h2>
+
+<%= form_with model: @post do |f| %>
+    <table>
+        <tr>
+            <th><%= f.label :check_in, "チェックイン" %></th>
+            <td><%= f.date_field :check_in ,class:"posts-content" %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :check_out, "テェックアウト" %></th>
+            <td><%= f.date_field :check_out ,class:"posts-content" %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :number_p, "人数" %></th>
+            <td><%= f.text_field :number_p ,class:"posts-content" %></td>
+        </tr>
+    </table>
+  
+    <div>
+        <ul>
+            <li><%= f.submit "再予約する" %></li>
+            <li><%= link_to "キャンセル", :reservations %></li>
+        </ul>
+    </div>
+<% end %>

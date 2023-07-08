@@ -15,27 +15,22 @@
  
    <tbody>
      <% @reservations.each do |reservation| %>
-       <tr>
-        <td>
-          <% if room.image? %>
-            <img src=<%= room.image %>>
-          <% else %>
-            <img src="/assets/room.png" width="130" height="84" >
-          <% end %>
-        </td>
-        <td>
-          <%= link_to room.name, room_path(room.id) %>
-        </td>
-        <td><%= room.introduction %></td>
-        <td><%= room.price %></td>
-        <td><%= room.created_at.to_s(:datetime_jp) %></td>
-        <td>
-          <%= link_to "編集", edit_room_path(room.id) %>
-        </td>
-        <td>
-          <%= link_to "施設を削除", room_path(room.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
-        </td>
-       </tr>
+        <tr>
+            <td>
+            <% if reservation.room.image? %>
+                <img src=<%= @room.image %>>
+            <% else %>
+                <img src="/assets/room.png" width="86" height="56" >
+            <% end %>
+            </td>
+            <td><%= link_to reservation.room.name, room_path(reservation.room.id) %></td>
+            <td><%= reservation.room.introduction %></td>
+            <td><%= @total * reservation.room.price * reservation.number_p * reservation.stay_days %></td>
+            <td><%= reservation.check_in.strftime("%Y/%m/%d") %></td>
+            <td><%= reservation.check_out.strftime("%Y/%m/%d") %></td>
+            <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+            <td><%= link_to "削除", reservation_path(reservation.id), method: :delete, data: {confirm: "施設を削除しますか？"} %></td>
+        </tr>
      <% end %>
    </tbody>
  </table>

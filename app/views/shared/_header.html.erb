@@ -12,6 +12,7 @@
         </div>
         <ul id="test", class="dropdown__lists">
             <li id="test", class="dropdown__list"><%= link_to "施設の新規登録", new_room_path,class: "white" %></li>
+            <li id="test", class="dropdown__list"><%= link_to "予約済み一覧", reservations_path,class: "white" %></li>
             <li id="test", class="dropdown__list"><%= link_to "登録済み一覧", rooms_path,class: "white" %></li>
             <li id="test", class="dropdown__list"><%= link_to "アカウント設定", users_account_path,class: "white" %></li>
             <li id="test", class="dropdown__list"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "white" %></li>

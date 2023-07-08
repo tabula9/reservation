@@ -23,6 +23,8 @@
         <p>★★★★★</p>
         <p><%= @room.introduction %></p>
 
+        <%= render "shared/error", obj: @reservation %>
+
         <%= form_with model: @reservation do |f| %>
             <table>
                 <tr>
@@ -37,6 +39,7 @@
                 </tr>
             </table>
             <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :room_id, value: @room.id %>
             <% if user_signed_in? %>
                 <%= f.submit "予約する"%>
             <% else %>
