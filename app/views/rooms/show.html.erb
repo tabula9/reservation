@@ -1,7 +1,11 @@
-<div class="between">
- <%= link_to "← 戻る", :back %>
- <%= link_to "編集", edit_room_path %>
-</div>
+<% if user_signed_in? && current_user.id == @room.user_id %>
+    <div class="between">
+    <%= link_to "← 戻る", :back %>
+    <%= link_to "編集", edit_room_path %>
+    </div>
+<% else %>
+    <%= link_to "← 戻る", :back %>
+<% end %>
 
 <div class="between">
     <% if @room.image? %>
@@ -18,5 +22,26 @@
         <p><%= @room.address %></p>
         <p>★★★★★</p>
         <p><%= @room.introduction %></p>
+
+        <%= form_with model: @reservation do |f| %>
+            <table>
+                <tr>
+                    <th><%= f.label :check_in, "チェックイン" %></th>
+                    <th><%= f.label :check_out, "チェックアウト" %></th>
+                    <th><%= f.label :number_p, "人数" %></th>
+                </tr>
+                <tr>
+                    <td><%= f.date_field :check_in, class:"posts-content" %></td>
+                    <td><%= f.date_field :check_out, class:"posts-content" %></td>
+                    <td><%= f.text_field :number_p, class:"posts-content" %></td>
+                </tr>
+            </table>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <% if user_signed_in? %>
+                <%= f.submit "予約する"%>
+            <% else %>
+                <%= link_to "ログイン", new_user_session_path %>
+            <% end %>
+        <% end %>
     </div>
 </div>

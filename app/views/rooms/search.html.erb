@@ -1,0 +1,23 @@
+<div class="search_form">
+    <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+        <%= f.text_field :area, placeholder: "エリア名を入力" %>
+        <%= f.text_field :word, placeholder: "キーワード名を入力" %>
+        <%= f.submit "検索" %>
+    <% end %>
+</div>
+
+<p><%= @rooms.count %>件が見つかりました。</p>
+
+<% @rooms.each do |room| %>
+    <% if room.image? %>
+        <img src=<%= room.image %>>
+    <% else %>
+        <img src="/assets/room.png" width="130" height="84" >
+    <% end %>
+    <p><%= room.name %></p>
+    <p><%= room.address %></p>
+    <span>★★★★★</span>
+    <p><%= room.introduction %></p>
+    <p><%= room.price %></p>
+    <p><%= link_to "詳細はこちら", room_path(room.id) %></p>
+<% end %>

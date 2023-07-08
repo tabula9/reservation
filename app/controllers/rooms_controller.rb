@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :search]
+
   def index
+    @user = User.find(current_user.id)
     @rooms = Room.all
+    @rooms = @user.rooms
   end
 
   def new
@@ -8,7 +12,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(params.require(:room).permit(:name, :introduction, :price, :address, :image))
+    @room = Room.new(params.require(:room).permit(:name, :introduction, :price, :address, :image, :user_id))
     if @room.save
       flash[:notice] = "施設が作成されました。"
       redirect_to room_path(@room)
@@ -19,6 +23,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def edit
@@ -40,5 +45,15 @@ class RoomsController < ApplicationController
     @room.destroy
     flash[:notice] = "施設が削除されました。"
     redirect_to :rooms
+  end
+
+  def search
+    @rooms = Room.all
+    if params[:word].present?
+      @rooms = @rooms.where('name LIKE ? OR introduction LIKE ?', "%#{params[:word]}%", "%#{params[:word]}%")
+    end
+    if params[:area].present?
+      @rooms = @rooms.where('address LIKE ?', "%#{params[:area]}%")
+    end
   end
 end

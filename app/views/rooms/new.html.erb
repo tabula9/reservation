@@ -1,4 +1,6 @@
 <h2>新規登録</h2>
+
+<%= render "shared/error", obj: @room %>
  
  <%= form_with model: @room do |f| %>
    <table>
@@ -27,7 +29,8 @@
        <td><%= f.file_field :image %></td>
      </tr>
    </table>
- 
+   <%= f.hidden_field :user_id, value: current_user.id %>
+
    <div>
      <ul>
        <li><%= f.submit "保存"%></li>
