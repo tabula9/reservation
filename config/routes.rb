@@ -15,5 +15,9 @@ Rails.application.routes.draw do
       get 'search', to: 'rooms#search'
     end
   end
-  resources :reservations
+  resources :reservations do
+    collection do
+      post :confirm
+    end
+  end
 end

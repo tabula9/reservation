@@ -25,7 +25,7 @@
 
         <%= render "shared/error", obj: @reservation %>
 
-        <%= form_with model: @reservation do |f| %>
+        <%= form_with model: @reservation, url: confirm_reservations_path(@reservation), local: true, id: "new-reservation" do |f| %>
             <table>
                 <tr>
                     <th><%= f.label :check_in, "チェックイン" %></th>
@@ -38,9 +38,9 @@
                     <td><%= f.text_field :number_p, class:"posts-content" %></td>
                 </tr>
             </table>
+            <% if user_signed_in? %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :room_id, value: @room.id %>
-            <% if user_signed_in? %>
                 <%= f.submit "予約する"%>
             <% else %>
                 <%= link_to "ログイン", new_user_session_path %>

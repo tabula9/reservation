@@ -9,8 +9,15 @@ class ReservationsController < ApplicationController
   def new
   end
 
+  def confirm
+    @reservation = Reservation.new(reservation_params)
+    if @reservation.invalid?
+      render "rooms/show"
+    end
+  end
+
   def create
-    @reservation = Reservation.new(params.require(:reservation).permit(:check_in, :check_out, :number_p, :user_id, :room_id))
+    @reservation = Reservation.new(reservation_params)
     if @reservation.save
       flash[:notice] = "施設の予約が完了しました。"
       redirect_to reservations_path
@@ -29,7 +36,7 @@ class ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    if @reservation.update(params.require(:reservation).permit(:check_in, :check_out, :number_p))
+    if @reservation.update(reservation_params)
       flash[:notice] = "施設の予約情報を更新しました。"
       redirect_to :reservations
     else
@@ -43,4 +50,10 @@ class ReservationsController < ApplicationController
     flash[:notice] = "施設の予約情報を削除しました。"
     redirect_to :reservations
   end
+
+  private
+
+    def reservation_params
+      params.require(:reservation).permit(:check_in, :check_out, :number_p, :user_id, :room_id)
+    end
 end
