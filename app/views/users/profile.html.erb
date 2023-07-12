@@ -1,10 +1,12 @@
-<h2>設定</h2>
+<%= stylesheet_link_tag 'user', :media => "all" %>
+
+<h2 class="setting">設定</h2>
 
 <div class="between">
     <%= render "shared/partial" %>
 
     <div class="wid">
-        <div class="between">
+        <div class="between bottom_line">
             <h2>プロフィール</h2>
             <%= link_to "編集", profile_edit_path %>
         </div>

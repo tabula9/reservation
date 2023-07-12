@@ -1,0 +1,31 @@
+.orange_btn {
+    padding: 10px;
+    background-color: rgb(255, 132, 0);
+    border-radius: 4px;
+    margin: 0 30px;
+}
+
+.image_logo {
+    width: 200px;
+    height: auto;
+    margin-left: 30px;
+}
+
+.image_logo_foot {
+    width: 300px;
+    height: auto;
+    margin: 100px 0 100px 30px;
+}
+
+.border_bottom {
+    border: 2px solid #ddd;
+}
+
+.border_top {
+    border: 2px solid #ddd;
+}
+
+.dropdown__list {
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+}

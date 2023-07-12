@@ -1,15 +1,15 @@
-<h2>設定</h2>
+<h2 class="setting">設定</h2>
 
 <div class="between">
     <%= render "shared/partial" %>
     <div class="wid">
-        <div class="between">
+        <div class="bottom_line">
             <h2>プロフィール</h2>
         </div>
 
       <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
         <div class="field">
-          <%= f.label :image, "アイコン画像" %><br>
+          <%= f.label :image, "アイコン画像" %>
           <% if current_user.image? %>
             <%= image_tag current_user.image.url, :size => '100x100' %>
           <% else %>
@@ -19,19 +19,19 @@
         </div>
 
         <div class="field">
-          <%= f.label :name, "名前" %><br>
-          <%= f.text_field :name %>
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, placeholder: "名前を入力" %>
         </div>
 
         <div class="field">
-            <%= f.label :profile, "自己紹介" %><br>
-            <%= f.text_area :profile, autofocus: true %>
+            <%= f.label :profile, "自己紹介" %>
+            <%= f.text_area :profile, placeholder: "自己紹介を入力", autofocus: true %>
         </div>
           
         <div class="actions">
-          <%= f.submit "保存" %>
+          <%= link_to "キャンセル", :back, class: "btn" %>
+          <%= f.submit "保存", class: "orange_btn user_btn white" %>
         </div>
-        <%= link_to "キャンセル", :back %>
       <% end %>
 
   </div>
