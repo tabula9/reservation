@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'reservations', :media => "all" %>
+
+<div class="n_container">
+<h2>再予約する</h2>
+
+<%= render "shared/error", obj: @reservation %>
+
+<% if @reservation.room.image? %>
+    <img src=<%= @reservation.room.image %> class="reservation_img" >
+<% else %>
+    <img src="/assets/room.png", class="reservation_img" >
+<% end %>
+<div class="between">
+<p class="large"><%= @reservation.room.name %></p>
+<p class="orange large">¥<%= @reservation.room.price %>〜</p>
+</div>
+<span><%= @reservation.room.address %></span>
+<span class="yellow">★★★★★</span>
+<p><%= @reservation.room.introduction %></p>
+
+<%= form_with model: @reservation, url: edit_confirm_reservation_path(@reservation), method: :patch, local: true do |f| %>
+    <span><%= f.label :check_in, "チェックイン" %></span>
+    <span><%= f.date_field :check_in ,class:"posts-content" %></span>
+    <span><%= f.label :check_out, "テェックアウト" %></span>
+    <span><%= f.date_field :check_out ,class:"posts-content" %></span>
+    <span><%= f.label :number_p, "人数" %></span>
+    <span><%= f.text_field :number_p ,class:"posts-content" %></span>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :room_id %>
+    <div>
+        <%= f.submit "再予約する", class: "orange_btn complete-btn block resize" %>
+        <%= link_to "キャンセル", :reservations, class: "btn resize" %>
+    </div>
+<% end %>
+</div>

@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag 'rooms', :media => "all" %>
+
+<%= render "shared/search" %>
+
+<div class="n_container">
+<% if user_signed_in? && current_user.id == @room.user_id %>
+    <div class="between">
+    <%= link_to "← 戻る", :back, class: "blue middle" %>
+    <%= link_to "編集", edit_room_path(@room), class: "blue middle" %>
+    </div>
+<% else %>
+    <%= link_to "← 戻る", :back, class: "blue middle" %>
+<% end %>
+
+<div class="between margin_top">
+    <% if @room.image? %>
+        <img src=<%= @room.image %> class="show_img" >
+    <% else %>
+        <img src="/assets/room.png", class="show_img" >
+    <% end %>
+
+    <div class="room_container">
+        <div class="between">
+            <h3 class="larger"><%= @room.name %></h3>
+            <h3 class="orange larger">¥<%= @room.price %>〜</h3>
+        </div>
+        <p class="bottom_cut"><%= @room.address %></p>
+        <p class="yellow">★★★★★</p>
+        <p><%= @room.introduction %></p>
+
+        <%= render "shared/error", obj: @reservation %>
+
+        <%= form_with model: @reservation, url: confirm_reservations_path(@reservation), local: true, id: "new-reservation" do |f| %>
+            <table class="back_white">
+                <tr>
+                    <th class="posts-content"><%= f.label :check_in, "チェックイン" %></th>
+                    <th class="posts-content"><%= f.label :check_out, "チェックアウト" %></th>
+                    <th class="posts-content"><%= f.label :number_p, "人数" %></th>
+                </tr>
+                <tr>
+                    <td class="posts-content"><%= f.date_field :check_in %></td>
+                    <td class="posts-content"><%= f.date_field :check_out %></td>
+                    <td class="posts-content"><%= f.text_field :number_p, class:"posts-content" %></td>
+                </tr>
+            </table>
+            <% if user_signed_in? %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+                <%= f.submit "予約する", class: "orange_btn resevation_btn middle"%>
+            <% else %>
+                <%= link_to "ログイン", new_user_session_path %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+</div>

@@ -1,0 +1,221 @@
+header {
+  width: 100%;
+  padding: 20px 0;
+  margin: 0;
+  background-color: midnightblue;
+  }
+  
+footer{
+  width: 100%;
+  padding: 20px 0;
+  margin: 200px 0 0 0;
+  background-color: midnightblue;
+}
+  
+.white {
+  color: white;
+}
+
+.notice {
+  background-color: #ccf;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: fit-content;
+  z-index: 10;
+}
+
+.alert {
+  background-color: red;
+  color: #fff;
+}
+
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+}
+
+.dropdown__lists {
+  display: none;/*デフォルトでは非表示の状態にしておく*/
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  width: 10%;
+}
+
+.dropdown__list {
+  background-color: #fff;
+  height: 30px;
+  transition: all .3s;
+  position: relative;
+}
+
+.dropdown__list:hover {
+  background-color: orange;
+}
+.dropdown__list a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+.gnavi__list span::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  transform: rotate(225deg);
+  position: absolute;
+  right: 24px;
+  top: calc(50% - 5px);
+}
+
+.gnavi__list span {
+  display: inline-block;
+  padding-right: 30px;
+  padding-left: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.block {
+  display: block;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+}
+
+.rela {
+  position: relative;
+}
+
+.icon_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
+  //タテヨコ比を変えないままトリミング
+}
+
+.icon_image_s {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.vertical {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.form_container {
+  width: fit-content;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 30px;
+}
+
+.index_container {
+  width: fit-content;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+.blue {
+  color: rgb(0, 145, 255);
+}
+
+.d_click {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.dropdown__indexs {
+  display: none;
+  position: absolute;
+  width: 100px;
+  right: 20px;
+  top: 10px;
+}
+
+.inline_block {
+  display: inline-block;
+}
+
+.dropdown__index {
+  position: relative;
+  height: 30px;
+}
+
+.dropdown__index:hover {
+  background-color: orange;
+}
+
+.dropdown__index a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  position: relative;
+  font-size: 14px;
+}
+
+.bottom_line {
+  border-bottom: 2px solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.black_line {
+  border-bottom: 2px solid black;
+}
+
+.yellow {
+  color: rgb(255, 213, 0);
+}
+
+.middle {
+  font-size: 18px;
+}
+
+.large {
+  font-size: 20px;
+}
+
+.larger {
+  font-size: 30px;
+}
+
+.orange {
+  color: rgb(255, 132, 0);
+}
+
+.n_container {
+  width: fit-content;
+  margin: 10px auto;
+}

@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag 'rooms', :media => "all" %>
+
+<%= render "shared/search" %>
+
+<div class="result_container">
+<p class="large"><%= @rooms.count %>件が見つかりました。</p>
+
+<% @rooms.each do |room| %>
+    <div class="search_result">
+    <% if room.image? %>
+        <img src=<%= room.image %> class="room_img" >
+    <% else %>
+        <img src="/assets/room.png", class="room_img" >
+    <% end %>
+    <p class="large"><%= room.name %></p>
+    <p class="bottom_cut"><%= room.address %></p>
+    <span class="yellow">★★★★★</span>
+    <p><%= room.introduction %></p>
+    <div class="between">
+    <p class="large orange">¥<%= room.price %>〜</p>
+    <p class="orange_btn kwsk"><%= link_to "詳細はこちら", room_path(room.id), class: "white" %></p>
+    </div>
+    </div>
+<% end %>
+</div>

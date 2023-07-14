@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag 'header', :media => "all" %>
+<%= stylesheet_link_tag 'common', :media => "all" %>
+
+<% if user_signed_in? %>
+<div class="between rela">
+    <%= link_to image_tag("/assets/logo.png", class: "image_logo"), top_search_path %>
+    <div id="btn", class="gnavi__list white">
+        <div class="vertical">
+        <% if current_user.image? %>
+            <%= image_tag current_user.image.url, class: "icon_image_s" %>
+        <% else %>
+            <%= image_tag "/assets/default.png", class: "icon_image_s" %>
+         <% end %>
+        <span><%= current_user.name %></span>
+        </div>
+        <ul id="test", class="dropdown__lists">
+            <li id="test", class="dropdown__list border_bottom"><%= link_to "施設の新規登録", new_room_path,class: "white" %></li>
+            <li id="test", class="dropdown__list"><%= link_to "予約済み一覧", reservations_path,class: "white" %></li>
+            <li id="test", class="dropdown__list"><%= link_to "登録済み一覧", rooms_path,class: "white" %></li>
+            <li id="test", class="dropdown__list"><%= link_to "アカウント設定", users_account_path,class: "white" %></li>
+            <li id="test", class="dropdown__list border_top"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "white" %></li>
+        </ul>  
+    </div>
+</div>
+<% else %>
+    <div class="between">
+        <%= link_to image_tag("/assets/logo.png", class: "image_logo"), top_search_path %>
+        <div>
+            <%= link_to "ログイン", new_user_session_path,class: "white" %>
+            <%= link_to "新規登録", new_user_registration_path,class: "white orange_btn" %>
+        </div>
+    </div>
+<% end %>
+
+<% if flash[:notice] %>
+    <p class="notice"><%= notice %></p>
+<% elsif flash[:alert] %>
+    <p class="notice alert"><%= alert %></p>
+<% end %>

@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag 'reservations', :media => "all" %>
+
+<h2>予約済み一覧</h2>
+
+<div class="index_container">
+<table>
+   <thead>
+     <tr>
+       <th class="black_line wid_m">画像</th>
+       <th class="black_line">施設名</th>
+       <th class="black_line wid_l">紹介文</th>
+       <th class="black_line">合計料金</th>
+       <th class="black_line">チェックイン</th>
+       <th class="black_line">テェックアウト</th>
+       <th class="black_line">予約確定日時</th>
+       <th class="black_line wid_s"></th>
+     </tr>
+   </thead>
+ 
+   <tbody>
+     <% @reservations.each do |reservation| %>
+        <tr>
+            <td class="bottom_line">
+            <% if reservation.room.image? %>
+                <img src=<%= reservation.room.image %> class="room_img" >
+            <% else %>
+                <img src="/assets/room.png", class="room_img" >
+            <% end %>
+            </td>
+            <td class="bottom_line"><%= link_to reservation.room.name, room_path(reservation.room.id), class: "blue" %></td>
+            <td class="bottom_line"><%= reservation.room.introduction %></td>
+            <td class="bottom_line">¥<%= reservation.room.price * reservation.number_p * reservation.stay_days %></td>
+            <td class="bottom_line"><%= reservation.check_in.strftime("%Y/%m/%d") %></td>
+            <td class="bottom_line"><%= reservation.check_out.strftime("%Y/%m/%d") %></td>
+            <td class="bottom_line">
+            <% if reservation.updated_at? %>
+              <%= reservation.updated_at.strftime("%Y/%m/%d %H:%M") %>
+            <% else %>
+              <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %>
+            <% end %>
+            </td>
+            <td class="d_click rela bottom_line">
+              ... 
+              <ul class="dropdown__indexs left">
+                <li class="dropdown__index"><%= link_to "再予約", edit_reservation_path(reservation.id) %></li>
+                <li class="dropdown__index"><%= link_to "削除", reservation_path(reservation.id), method: :delete, data: {confirm: "予約を削除しますか？"} %></li>
+              </ul>
+            </td>
+        </tr>
+     <% end %>
+   </tbody>
+ </table>
+</div>
