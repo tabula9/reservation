@@ -3,7 +3,6 @@ class ReservationsController < ApplicationController
     @user = User.find(current_user.id)
     @reservations = Reservation.all
     @reservations = @user.reservations
-    @total = 1
   end
 
   def new
@@ -12,6 +11,7 @@ class ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.new(reservation_params)
     if @reservation.invalid?
+      @room = Room.find(params[:reservation][:room_id])
       render "rooms/show"
     end
   end
@@ -32,6 +32,14 @@ class ReservationsController < ApplicationController
 
   def edit
     @reservation = Reservation.find(params[:id])
+  end
+
+  def edit_confirm
+    @reservation = Reservation.find(params[:id])
+    @reservation.attributes = reservation_params
+    if @reservation.invalid?
+      render "edit"
+    end
   end
 
   def update

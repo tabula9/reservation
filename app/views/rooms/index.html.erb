@@ -1,41 +1,45 @@
+<%= stylesheet_link_tag 'rooms', :media => "all" %>
+
+<div class="index_container">
 <h2>登録済み一覧</h2>
  
  <table>
    <thead>
      <tr>
-       <th>画像</th>
-       <th>施設名</th>
-       <th>紹介文</th>
-       <th>料金</th>
-       <th>作成日</th>
-       <th></th>
+       <th class="black_line">画像</th>
+       <th class="black_line">施設名</th>
+       <th class="black_line">紹介文</th>
+       <th class="black_line">料金</th>
+       <th class="black_line">作成日</th>
+       <th class="black_line wid_s"></th>
      </tr>
    </thead>
  
    <tbody>
      <% @rooms.each do |room| %>
        <tr>
-        <td>
+        <td class="bottom_line">
           <% if room.image? %>
-            <img src=<%= room.image %>>
+            <img src=<%= room.image %> class="room_icon" >
           <% else %>
-            <img src="/assets/room.png" width="130" height="84" >
+            <img src="/assets/room.png", class="room_icon" >
           <% end %>
         </td>
-        <td>
-          <%= link_to room.name, room_path(room.id) %>
+        <td class="bottom_line">
+          <%= link_to room.name, room_path(room.id), class: "blue" %>
         </td>
-        <td><%= room.introduction %></td>
-        <td><%= room.price %></td>
-        <td><%= room.created_at.to_s(:datetime_jp) %></td>
-        <td>
-          <%= link_to "編集", edit_room_path(room.id) %>
-        </td>
-        <td>
-          <%= link_to "施設を削除", room_path(room.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        <td class="bottom_line"><%= room.introduction %></td>
+        <td class="bottom_line">¥<%= room.price %>〜</td>
+        <td class="bottom_line"><%= room.created_at.to_s(:datetime_jp) %></td>
+        <td class="d_click rela bottom_line">
+        ... 
+        <ul class="dropdown__indexs">
+          <li class="dropdown__index"><%= link_to "編集", edit_room_path(room.id) %></li>        
+          <li class="dropdown__index"><%= link_to "施設を削除", room_path(room.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></li>
+        </ul>
         </td>
        </tr>
      <% end %>
    </tbody>
  </table>
- 
+ </div>

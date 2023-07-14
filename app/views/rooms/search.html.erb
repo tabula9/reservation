@@ -1,23 +1,25 @@
-<div class="search_form">
-    <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
-        <%= f.text_field :area, placeholder: "エリア名を入力" %>
-        <%= f.text_field :word, placeholder: "キーワード名を入力" %>
-        <%= f.submit "検索" %>
-    <% end %>
-</div>
+<%= stylesheet_link_tag 'rooms', :media => "all" %>
 
-<p><%= @rooms.count %>件が見つかりました。</p>
+<%= render "shared/search" %>
+
+<div class="result_container">
+<p class="large"><%= @rooms.count %>件が見つかりました。</p>
 
 <% @rooms.each do |room| %>
+    <div class="search_result">
     <% if room.image? %>
-        <img src=<%= room.image %>>
+        <img src=<%= room.image %> class="room_img" >
     <% else %>
-        <img src="/assets/room.png" width="130" height="84" >
+        <img src="/assets/room.png", class="room_img" >
     <% end %>
-    <p><%= room.name %></p>
-    <p><%= room.address %></p>
-    <span>★★★★★</span>
+    <p class="large"><%= room.name %></p>
+    <p class="bottom_cut"><%= room.address %></p>
+    <span class="yellow">★★★★★</span>
     <p><%= room.introduction %></p>
-    <p><%= room.price %></p>
-    <p><%= link_to "詳細はこちら", room_path(room.id) %></p>
+    <div class="between">
+    <p class="large orange">¥<%= room.price %>〜</p>
+    <p class="orange_btn kwsk"><%= link_to "詳細はこちら", room_path(room.id), class: "white" %></p>
+    </div>
+    </div>
 <% end %>
+</div>
